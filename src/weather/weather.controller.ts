@@ -9,11 +9,29 @@ export class WeatherController {
     async getWeather(@Query('city') city: string) {
       const weatherData = await this.weatherService.getWeatherByCity(city);
       
-      const { currentDay, hourlyForecast } = weatherData;
+      const { currentDay, hourlyForecast, forecast5Days } = weatherData;
   
       return {
         currentDay,
         hourlyForecast,
+        forecast5Days
       };
     }
+
+    @Get('city')
+    async getCity(
+        @Query('lat') lat: string,
+        @Query('lon') lon: string
+      ) {
+        const city = await this.weatherService.getCityByCord(lat, lon);
+      
+        return city ;
+    }
+
+    @Get('fetchCities')
+    async fetchCities(@Query('query') query: string) {
+        const cities = await this.weatherService.getAllCities(query);
+        return cities;
+    }
+
 }
