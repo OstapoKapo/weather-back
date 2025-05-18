@@ -41,7 +41,7 @@ async init(@Req() req, @Res({ passthrough: true }) res) {
 
     const newToken = this.authService.createToken(user.identifier);
     res.cookie('token', newToken, {
-      secure: false, 
+      secure: true, 
       httpOnly: true,
       sameSite: 'lax',
       maxAge: 30 * 24 * 60 * 60 * 1000,
