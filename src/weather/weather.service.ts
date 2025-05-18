@@ -57,7 +57,6 @@ export class WeatherService {
 
       const forecastList = forecastRes.data.list;
 
-      // 👉 тут починається новий код для прогнозу на 5 днів
       const dailyForecast: { maxTemp: number; minTemp: number; main: string, icon: string, day: string }[] = [];
   
       for (let i = 0; i < forecastList.length; i += 8) {
@@ -105,7 +104,7 @@ currentRes.data.todayHighLow = {
       const data = {
         currentDay: currentRes.data,
         forecast: forecastList.slice(0, 8),
-        forecast5Days: dailyForecast // новий ключ
+        forecast5Days: dailyForecast 
       };
   
       await this.cache.set(cacheKey, data);
@@ -127,7 +126,7 @@ currentRes.data.todayHighLow = {
       return {
         currentDay: weatherData.currentDay,
         hourlyForecast: weatherData.forecast,
-        forecast5Days:weatherData.forecast5Days,  // Додаємо 7-дневний прогноз
+        forecast5Days:weatherData.forecast5Days,  
       };
     } catch (error) {
       console.error('Error fetching weather by city:', error.response?.data || error.message);
