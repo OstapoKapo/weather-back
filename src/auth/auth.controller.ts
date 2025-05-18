@@ -43,7 +43,7 @@ async init(@Req() req, @Res({ passthrough: true }) res) {
     res.cookie('token', newToken, {
       secure: true, 
       httpOnly: true,
-      sameSite: 'lax',
+      sameSite: 'none',
       maxAge: 30 * 24 * 60 * 60 * 1000,
     });
   }

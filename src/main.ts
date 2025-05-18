@@ -14,7 +14,7 @@ async function bootstrap() {
   dotenv.config();
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin: 'https://weather-client-pi.vercel.app', // Твій фронтенд
+    origin: 'http://localhost:3000', // Твій фронтенд
     credentials: true, // Дозволити передачу cookie
   });
   app.use(cookieParser());
