@@ -5,14 +5,6 @@ import { Response, Request } from 'express';
 import { JwtAuthGuard } from './jwt/jwt-auth.guard';
 import { randomUUID } from 'crypto';
 
-interface requestWithUser extends Request {
-    user: {
-        identifier: string;
-        bookmarks: string;
-        _id: string;
-    }
-}
-
 @Controller('auth')
 export class AuthController {
   constructor(

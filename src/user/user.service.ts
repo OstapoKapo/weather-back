@@ -15,15 +15,24 @@ export class UserService {
     const user = new this.userModel({ identifier:identifier, bookmarks: [] });
     return user.save();
   }
-  async addBookmark(identifier: string, city: string) {
+
+  async addCity(identifier: string, city: string) {
    return await this.userModel.updateOne(
       { identifier },
       { $addToSet: { bookmarks: city } }
     );
 
   }
+
+  async deleteCity(identifier: string, city: string) {
+    return await this.userModel.updateOne(
+      { identifier },
+      { $pull: { bookmarks: city } }
+    );
+  }
   
-  async getBookmarks(identifier: string) {
+  
+  async getCity(identifier: string) {
     const user = await this.userModel.findOne({ identifier });
     return user ? user.bookmarks : [];
   }
